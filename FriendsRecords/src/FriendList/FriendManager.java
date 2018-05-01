@@ -11,6 +11,14 @@ public class FriendManager {
 
     private ArrayList<Friend> friends;
 
+    public ArrayList<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<Friend> friends) {
+        this.friends = friends;
+    }
+
     public FriendManager(JSONArray friendsArr) throws JSONException {
         friends = new ArrayList<Friend>();
         for (Object frndObj : friendsArr) {
@@ -19,7 +27,7 @@ public class FriendManager {
         }
     }
 
-    private ArrayList<Friend> keepNearby(double baseLat, double baseLon, int thresholdDistance) {
+    private void keepNearby(double baseLat, double baseLon, int thresholdDistance) {
         ArrayList<Friend> nearbyFriends = new ArrayList<Friend>();
         for (Friend frnd : friends) {
             double frndDistance = frnd.distance(baseLat, baseLon);
@@ -27,7 +35,7 @@ public class FriendManager {
                 nearbyFriends.add(frnd);
             }
         }
-        return nearbyFriends;
+        friends= nearbyFriends;
     }
 
     public void sort() {
@@ -36,8 +44,8 @@ public class FriendManager {
 
     public void printStudents(double baseLat, double baseLon, int thresholdDistance) {
 
-        ArrayList<Friend> NearFriends = keepNearby(baseLat, baseLon, thresholdDistance);
-        for (Friend frnd : NearFriends) {
+        keepNearby(baseLat, baseLon, thresholdDistance);
+        for (Friend frnd : friends) {
 
             System.out.println(frnd);
         }
