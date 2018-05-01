@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
     UtilityTest.class,
-    FriendTest.class,
+    DistanceCalculatorTest.class,
     FriendManagerTest.class
 })
 public class FriendSuite {

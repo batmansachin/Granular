@@ -49,22 +49,6 @@ public class Friend implements Comparable {
         this.longitude = longitude;
     }
 
-    public double distance(double srcLat, double srcLon) {
-        srcLat = Math.toRadians(srcLat);
-        srcLon = Math.toRadians(srcLon);
-        double lat = Math.toRadians(this.latitude);
-        double lon = Math.toRadians(this.longitude);
-        double lonDiff = Math.abs(srcLon - lon);
-        double sin = Math.sin(srcLat) * Math.sin(lat);
-        double cos = Math.cos(srcLat) * Math.cos(lat) * Math.cos(lonDiff);
-
-        double sum = sin + cos;
-
-        double centralAngle = Math.acos(sum); //in degrees
-        double arcLength = FriendConstants.radius * centralAngle;
-        return arcLength; //kilometer
-    }
-
     @Override
     public int compareTo(Object frnd) {
         int compareId = ((Friend) frnd).getId();

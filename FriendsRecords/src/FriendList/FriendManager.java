@@ -3,7 +3,6 @@ package FriendList;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.json.JSONException;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -22,31 +21,28 @@ public class FriendManager {
     public FriendManager(JSONArray friendsArr) throws JSONException {
         friends = new ArrayList<Friend>();
         for (Object frndObj : friendsArr) {
-            Friend friend = new Friend((org.json.simple.JSONObject) frndObj);
+            Friend friend = new Friend((JSONObject) frndObj);
             friends.add(friend);
         }
     }
 
-    private void keepNearby(double baseLat, double baseLon, int thresholdDistance) {
-        ArrayList<Friend> nearbyFriends = new ArrayList<Friend>();
+    public ArrayList<Friend> getNearby(double baseLat, double baseLon, int thresholdDistance) {
+        ArrayList<Friend> nearByFriends = new ArrayList<Friend>();
         for (Friend frnd : friends) {
-            double frndDistance = frnd.distance(baseLat, baseLon);
+            double frndDistance = DistanceCalculator.getDistance(frnd, baseLat, baseLon);
             if (frndDistance <= thresholdDistance) {
-                nearbyFriends.add(frnd);
+                nearByFriends.add(frnd);
             }
         }
-        friends= nearbyFriends;
+        return nearByFriends;
     }
 
-    public void sort() {
-        Collections.sort(friends);
+    public void sort(ArrayList<Friend> nearByfriends) {
+        Collections.sort(nearByfriends);
     }
 
-    public void printStudents(double baseLat, double baseLon, int thresholdDistance) {
-
-        keepNearby(baseLat, baseLon, thresholdDistance);
-        for (Friend frnd : friends) {
-
+    public void printNearBy(ArrayList<Friend> nearByfriends) {
+        for (Friend frnd : nearByfriends) {
             System.out.println(frnd);
         }
     }

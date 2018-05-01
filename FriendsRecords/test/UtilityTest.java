@@ -8,7 +8,7 @@ import org.junit.Test;
 public class UtilityTest {
 
     @Test
-    public void Test() throws JSONException {
+    public void testReadJson() throws JSONException {
         org.json.simple.JSONArray jsonArray = Utility.readJson(FriendConstants.friendsFilePath);
         Assert.assertNotNull(jsonArray);
 

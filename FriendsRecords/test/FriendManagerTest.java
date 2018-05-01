@@ -9,13 +9,11 @@ import org.junit.Test;
 public class FriendManagerTest {
 
     @Test
-    public void Test() throws JSONException {
+    public void testGetNearBy() throws JSONException {
         org.json.simple.JSONArray jsonArray = Utility.readJson(FriendConstants.friendsFilePath);
         FriendList.FriendManager friends = new FriendManager(jsonArray);
-        
         Assert.assertEquals(friends.getFriends().size(), 32);
-        friends.printStudents(FriendConstants.baseLat, FriendConstants.baseLon, FriendConstants.thresholdDistance);
-        Assert.assertEquals(friends.getFriends().size(), 11);
+        Assert.assertEquals(friends.getNearby(FriendConstants.baseLat, FriendConstants.baseLon, FriendConstants.thresholdDistance).size(), 11);
     }
 
 }
