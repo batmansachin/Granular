@@ -15,8 +15,7 @@ public class FriendTest {
         object.put("latitude", "12.986375");
         object.put("longitude", "77.043701");
         object.put("name", "Chris");
-        object.put("user_id", "12");
-        
+        object.put("user_id", 12);
        Friend friend = new Friend(object);
        Assert.assertEquals(friend.distance(FriendConstants.baseLat,FriendConstants.baseLon),64.26480291995638);
         
